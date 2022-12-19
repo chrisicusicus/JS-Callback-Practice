@@ -60,7 +60,7 @@ document.addEventListener('keyup', function(e){
 })
 
 
-function handleDirectionChange(){
+function handleDirectionChange(direction){
     if(direction === null){
         character.src = 'assets/green-character/static.gif'
     }
@@ -81,5 +81,31 @@ function handleDirectionChange(){
 
 move(character).withArrowKeys(100, 250, handleDirectionChange)
 
+function moveWithArrowKeys(left, bottom, callback){
+    let direction = null;
+    let x = left;
+    let y = bottom;
+}
+document.addEventListener('keydown', function(e){
+    if(e.repeat) return;
 
+    if(e.key === 'ArrowLeft'){
+        direction = 'west'
+    }
+    if(e.key === 'ArrowUp'){
+        direction = 'north'
+    }
+    if(e.key === 'ArrowRight'){
+        direction = 'east'
+    }
+    if(e.key === 'ArrowDown'){
+        direction = 'south'
+    }
+    callback(direction)
+})
+
+document.addEventListener('keyup', function(e){
+    direction = null
+    callback(direction)
+})
 
